@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Please registrate</title>
+</head>
+<body>
+<h1>Please registrate</h1>
+<div th:if="${param.error}">
+    Invalid values.</div>
+<div th:if="${param.logout}">
+    You have been logged out.</div>
+<!--<form:form>-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td>First Name:</td>-->
+<!--            <td><form:input path="email"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Last Name:</td>-->
+<!--            <td><form:input path="name"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>Last Name:</td>-->
+<!--            <td><form:input path="password"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td colspan="2">-->
+<!--                <input type="submit" value="Save Changes"/>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form:form>-->
+<form th:action="@{/auth/register}" th:method="POST" th:object="${ApplicationUser}">
+    <div>
+        <input type="email" th:field="*{email}" id="email" placeholder="email"/>
+    </div>
+	<div>
+        <input type="text" th:field="*{name}" id="name" placeholder="name"/>
+    </div>
+    <div>
+        <input type="password" th:field="*{password}" id="password" placeholder="Password"/>
+    </div>
+	<input type="hidden" th:field="*{role}" id="role" value="user"/>
+    <input type="submit" value="Log in" />
+<!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+</form>
+</body>
+</html>
